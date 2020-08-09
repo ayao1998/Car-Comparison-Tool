@@ -6,6 +6,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class database {
@@ -53,16 +55,31 @@ public class database {
 		frame.setSize(415, 290); //size of window
 		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true); //set to true
+		frame.addWindowListener(new WindowAdapter(){
+
+		    public void windowClosing(WindowEvent e){
+		        exitDatabase(myCars, frame);
+		    }
+
+		});
+		
+		JPanel mainPanel = new JPanel();
+		frame.add(mainPanel);
+		//mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+		mainPanel.setSize(415, 290); //size of window
+		mainPanel.setVisible(true); //set to true
+		
+		
 		JButton button = new JButton("View cars"); //make a button named "arg"
 		button.setBounds(25, 25, 350, 50); // x,y coords, x size y size
-		frame.add(button); //add button to frame
+		mainPanel.add(button); //add button to frame
 		button.addActionListener(new ActionListener() 
 		{
 		public void actionPerformed(ActionEvent arg0) {
 			//printAllCars(myCars); //change
-			ArrayList<JButton> carButts = buttonify(myCars); //arraylist of jbuttons with car names
+			//ArrayList<JButton> carButts = buttonify(myCars); //arraylist of jbuttons with car names
 			//need to add action listeners to jbuttons
-			addButtons(carButts, myCars);
+			addButtons(myCars);
 			}
 		});
 		
@@ -70,7 +87,7 @@ public class database {
 		
 		JButton button2 = new JButton("Add a new car");
 		button2.setBounds(25, 100, 350, 50);
-		frame.add(button2);
+		mainPanel.add(button2);
 		
 		
 		button2.addActionListener(new ActionListener() 
@@ -83,62 +100,91 @@ public class database {
 		
 		JButton button3 = new JButton("Exit");
 		button3.setBounds(25, 175, 350, 50);
-		frame.add(button3);
+		mainPanel.add(button3);
 		
 		
 		button3.addActionListener(new ActionListener() 
 		{
 		public void actionPerformed(ActionEvent arg0) {
-			//exitDatabase(myCars, frame); //close the window temporarily disabled because it was messing up my text file.
+			exitDatabase(myCars, frame); 
 			frame.dispose();
+			System.exit(0);
 			}
-		});
-		
+		});	
 		//CLOSING THE PROGRAM***
 		input.close();
 
 		
 	}
 	
-	public static void addButtons(ArrayList<JButton> buttonz, ArrayList<Car> myCars)
+	public static void addButtons(ArrayList<Car> myCars)
 	{
-
+		
+			final ArrayList<Car> final_cars = myCars;
+			
+		
 			JFrame frame = new JFrame("All cars"); 
 			frame.setLocation(700, 0); //puts frame in middle
-			frame.setSize(1000, 200);
+			frame.setSize(500, 200);
 			frame.setVisible(true);
 			
 			JPanel panel = new JPanel();
+			panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 			
-			Iterator<JButton> buttIt = buttonz.iterator();
-			JButton tempButt;
+			Iterator<Car> buttIt = final_cars.iterator();
+			Car tempCar;
 			
 			while(buttIt.hasNext())
 			{
-				tempButt = buttIt.next();
+				tempCar = buttIt.next();
+				JButton tempButt = new JButton(tempCar.year + " " + tempCar.make + " " + tempCar.model);
 				panel.add(tempButt);
+				final Car[] tester_final = new Car[1];
+				tester_final[0] = tempCar; //  https://stackoverflow.com/questions/4732544/why-are-only-final-variables-accessible-in-anonymous-class
 				tempButt.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent arg0)
 					{
+						
 						//view car on new jFrame
-						JFrame carFrame = new JFrame();
-						carFrame.setSize(300, 750);
+						JFrame carFrame = new JFrame(tester_final[0].getYear() + " " + tester_final[0].getMake() + " " + tester_final[0].getModel());
+						carFrame.setSize(400, 300);
 						carFrame.setVisible(true);
 						
 						JPanel spec_panel = new JPanel();
+						spec_panel.setLayout(new BoxLayout(spec_panel, BoxLayout.PAGE_AXIS));
 						
-						JLabel car_deets = new JLabel("testing123\n");
-						JLabel car2 = new JLabel("test again\n");
+						
+						JLabel year_make_model = new JLabel(tester_final[0].getYear() + " " + tester_final[0].getMake() + " " + tester_final[0].getModel());
+						JLabel mpgLabel = new JLabel(tester_final[0].getMPG());
+						JLabel hpLabel = new JLabel(tester_final[0].getHP());
+						JLabel weightLabel = new JLabel(tester_final[0].getWeight());
+						JLabel transLabel = new JLabel(tester_final[0].getTrans());
+						JLabel engineLabel = new JLabel(tester_final[0].getEngine());
+						JLabel bodyLabel = new JLabel(tester_final[0].getBodyStyle());
+						JLabel sizeLabel = new JLabel(tester_final[0].getSize());
+						
+						
+//trying to figure out how to pass in the car details do print on a jframe at the click of button.
+					//attempting to make a new class that implements actionlistener.
+						
 						/*
 						car_deets.setAlignmentX(0);
 						car_deets.setAlignmentY(0);
 						car2.setAlignmentX(100);
 						car2.setAlignmentY(100);
 						*/
+						year_make_model.setFont(new Font("", Font.PLAIN, 30));
 						
-						spec_panel.add(car_deets);
-						spec_panel.add(car2);
+						spec_panel.add(year_make_model);
+						spec_panel.add(mpgLabel);
+						spec_panel.add(hpLabel);
+						spec_panel.add(weightLabel);
+						spec_panel.add(transLabel);
+						spec_panel.add(engineLabel);
+						spec_panel.add(bodyLabel);
+						spec_panel.add(sizeLabel);
+						
 						carFrame.add(spec_panel);
 						
 
@@ -158,7 +204,7 @@ public class database {
 	}
 	
 	
-	
+	/*
 		public static ArrayList<JButton> buttonify(ArrayList<Car> myCars)
 		{
 			ArrayList<JButton> cars = new ArrayList<JButton>();
@@ -176,7 +222,7 @@ public class database {
 			return cars;
 		}
 	
-
+*/
 		public static void printAllCars(ArrayList<Car> myCars)
 		{
 			JFrame frame = new JFrame("All cars"); 
@@ -257,12 +303,9 @@ public class database {
 			{
 				temp = iterator.next();
 				yearMakeModel = Integer.toString(temp.getYear()) + " " + temp.getMake() + " " + temp.getModel();
-				writer.println(yearMakeModel);
+				writer.println(yearMakeModel + " " + temp.getMPG() + " " + temp.getHP() + " " + temp.getWeight() + " " + temp.getTrans() + " " + temp.getEngine() + " " + temp.getBodyStyle() + " " + temp.getSize());
 			}
 			writer.close();
 			jframe.dispose();
 		}
 }
-
-
-//does not terminate if you view cars then try to add then click exit.

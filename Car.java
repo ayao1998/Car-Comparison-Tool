@@ -69,6 +69,41 @@ public class Car {
 	{
 		return year;
 	}
+
+	public String getMPG()
+	{
+		return mpg;
+	}
+	
+	public String getHP()
+	{
+		return hp;
+	}
+	
+	public String getWeight()
+	{
+		return weight;
+	}
+	
+	public String getTrans()
+	{
+		return trans;
+	}
+	
+	public String getEngine()
+	{
+		return engine;
+	}
+	
+	public String getBodyStyle()
+	{
+		return body_style;
+	}
+	
+	public String getSize()
+	{
+		return car_size;
+	}
 	
 	public void printCar()
 	{
