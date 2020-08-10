@@ -1,3 +1,7 @@
-1998 Honda Accord 25city/32hwy 135hp-200hp 2,888lbs-3,285lbs automatic(4spd)/manual(5spd) I4(2.3L)/V6(3.0L) Sedan/Coupe Midsize
-1998 Toyota Corolla 31city/38hwy 120hp 2,414lbs-24,59lbs automatic(4spd)/manual(5spd) I4(1.8L) Sedan Compact
-2014 Ford Focus 27city/37hwy 159hp-160hp 2,935lbs-3,055lbs automatic(6spd)/manual(5spd) I4(2.0L) Sedan/Hatchback Compact
+1998 Honda Accord 25city/32hwy 135hp-200hp 2,888lbs-3,285lbs Automatic(4spd)/Manual(5spd) I4(2.3L)/V6(3.0L) Sedan/Coupe Midsize
+1998 Toyota Corolla 31city/38hwy 120hp 2,414lbs-24,59lbs Automatic(4spd)/Manual(5spd) I4(1.8L) Sedan Compact
+2014 Ford Focus 27city/37hwy 159hp-160hp 2,935lbs-3,055lbs Automatic(6spd)/Manual(5spd) I4(2.0L) Sedan/Hatchback Compact
+2018 Honda Civic 30city/40hwy 400hp-555hp 2,500lbs-2,700lbs Automatic(8spd) V10(6.2L-T) Sedan Compact
+2015 Subaru WRX 21city/28hwy 268hp-305hp 3,267lbs-3,450lbs Automatic(CVT)/Manual(6spd) H4(2.0L-T/2.5L-T) Sedan Compact
+2013 Scion FRS 25city/34hwy 200hp 2,758lbs-2,806lbs Automatic(6spd)/Manual(6spd) H4(2.0L) Coupe Compact
+2004 Lexus IS300 18city/25hwy 215hp 3,255lbs-3,410lbs Automatic(5spd)/Manual(5spd) I6(3.0L) Sedan/Wagon Compact
